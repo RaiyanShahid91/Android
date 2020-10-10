@@ -1,0 +1,62 @@
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.saveeco.Model.Product_Model;
+import com.example.saveeco.R;
+
+import java.util.List;
+
+public class Product_Adapter  extends RecyclerView.Adapter<Product_Adapter.ViewHolder>
+{
+
+    LayoutInflater inflater;
+    List<Product_Model> modelclasslists;
+
+    public Product_Adapter(Context ctx, List<Product_Model> modelclasslists)
+    {
+        this.inflater=LayoutInflater.from(ctx);
+        this.modelclasslists=modelclasslists;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view=inflater.inflate(R.layout.layout_productstock,parent,false);
+        return new Product_Adapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull Product_Adapter.ViewHolder holder, int position) {
+        holder.producttxt.setText(modelclasslists.get(position).getProduct());
+        holder.categorytxt.setText(modelclasslists.get(position).getCategory());
+        holder.cvtxt.setText(modelclasslists.get(position).getCv());
+        holder.pricetxt.setText(modelclasslists.get(position).getPrice());
+        holder.stocktxt.setText(modelclasslists.get(position).getStock());
+        holder.totaltxt.setText(modelclasslists.get(position).getTotal());
+    }
+
+    @Override
+    public int getItemCount() {return modelclasslists.size(); }
+
+    public class  ViewHolder extends RecyclerView.ViewHolder
+    {
+        TextView producttxt,categorytxt,cvtxt,pricetxt,stocktxt,totaltxt;
+
+        public ViewHolder(@NonNull View itemView)
+        {
+            super(itemView);
+            producttxt=itemView.findViewById(R.id.productnameanst);
+            categorytxt=itemView.findViewById(R.id.categoryans);
+            cvtxt=itemView.findViewById(R.id.cvans);
+            pricetxt=itemView.findViewById(R.id.pricens);
+            stocktxt=itemView.findViewById(R.id.avalablestockans);
+            totaltxt=itemView.findViewById(R.id.totalamountans);
+        }
+    }
+}
