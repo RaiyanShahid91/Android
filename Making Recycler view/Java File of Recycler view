@@ -1,0 +1,38 @@
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+
+import com.example.saveeco.Adapter.Product_Adapter;
+import com.example.saveeco.Model.Product_Model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductStock_activity extends AppCompatActivity
+{
+    RecyclerView recyclerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_productstock);
+        recyclerView=findViewById(R.id.recyclerview);
+
+        LinearLayoutManager layoutManager=new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        List<Product_Model> modelClassList=new ArrayList<>();
+        modelClassList.add(new Product_Model("1212","Fertilizer","2","Rs. 2000","25","Rs.75000"));
+        modelClassList.add(new Product_Model("1212","Fertilizer","2","Rs. 2000","25","Rs.75000"));
+        modelClassList.add(new Product_Model("1212","Fertilizer","2","Rs. 2000","25","Rs.75000"));
+        modelClassList.add(new Product_Model("1212","Fertilizer","2","Rs. 2000","25","Rs.75000"));
+        modelClassList.add(new Product_Model("1212","Fertilizer","2","Rs. 2000","25","Rs.75000"));
+        Product_Adapter adapter=new Product_Adapter(getApplicationContext(),modelClassList);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+}
